@@ -5,7 +5,11 @@ import { auth } from '../utils/firebase'
 import Header from './Header';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addUser } from '../utils/usersSlice';
+import { addUser } from '../utils/store/usersSlice';
+
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
 const Login = () => {
 
 const [isSignInForm, setIsSignInForm] = useState(true);
@@ -47,13 +51,28 @@ else{
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
+
+    toast.success('You have Registered Successfully', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+
     updateProfile(user, {
         displayName: fullname.current.value
       }).then(() => {
         // Profile updated!
         const {uid, email, displayName} = auth.currentUser;
         console.log(auth.currentUser)
-        dispatch(addUser({uid:uid, email:email, displayName:displayName}))
+        dispatch(addUser({uid:uid, email:email, displayName:displayName}));
+
+      
+
         // ...
       }).catch((error) => {
         // An error occurred
@@ -79,7 +98,21 @@ password.current.value = '';
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    navigate('/browse');
+
+    toast.success('You have Loged in successfully', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+
+    setTimeout(() =>{
+        navigate('/browse')
+       },1000)
     console.log(user);
     email.current.value = '';
 password.current.value = '';
@@ -144,8 +177,10 @@ password.current.value = '';
 </div>
       
 
-      
+<ToastContainer />
     </div>
+
+    
   )
 }
 

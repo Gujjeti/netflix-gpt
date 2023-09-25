@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { auth } from '../utils/firebase';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { addUser, removeUser } from "../utils/usersSlice";
+import { addUser, removeUser } from "../utils/store/usersSlice";
 
 
 const Header = () => {
@@ -21,7 +21,9 @@ const Header = () => {
             // https://firebase.google.com/docs/reference/js/auth.user
             const {uid, email, displayName} = user;
             dispatch(addUser({uid:uid, email:email, displayName:displayName}))
+           setTimeout(() =>{
             navigate('/browse')
+           },1000)
             // ...
           } else {
             navigate('/')

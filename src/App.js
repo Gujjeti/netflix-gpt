@@ -5,12 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 
 export default function App() {
-
-
-
-
-
-  return (
+return (
  <Login/>
   )
 }
