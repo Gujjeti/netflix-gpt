@@ -49,7 +49,7 @@ const Header = () => {
     }
 
   return (
-    <div className='flex justify-between logo  px-5 pr-5 z-9 w-full items-center'>
+    <div className='flex justify-between logo  px-5 pr-5 z-9 w-full items-center z-50 absolute top-0'>
         <div>
         <img src='https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png' width={150} />
       </div>
@@ -59,7 +59,7 @@ const Header = () => {
 
 
         
-       {user && <><span className='text-white flex gap-2 mr-5 border-r-2 pr-3'>
+       {user && <><span className='text-white flex gap-2 mr-5 border-r-2 border-r-[#2a2a2a] pr-3'>
         
         <img src='https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg' alt='' width={30} />{user.displayName} </span>  <button onClick={() => handleLogOut()} className=' text-[#e50914] font-bold text-[12px]  p-1 rounded-[5px]  cursor-pointer'><span className="material-symbols-outlined ">
 logout
