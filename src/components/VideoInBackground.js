@@ -8,6 +8,8 @@ const VideoInBackground =  () => {
 
     const moviesData = useSelector((state) => state.movies?.nowPlayingMovies);
    const LatestMovie = moviesData && moviesData[0];
+
+
     useEffect(() =>{
 
         
@@ -21,7 +23,7 @@ const VideoInBackground =  () => {
                     return item.type === "Trailer"
                 })
     
-                setTrailerId(trailerVideo[0].key)
+                setTrailerId(trailerVideo[0]?.key)
             }
 
             getmovieVideos()
@@ -36,7 +38,7 @@ const VideoInBackground =  () => {
    
   
   return (
-    <div className='w-screen overflow-hidden absolute top-0 iframevideo_frame  before:absolute before:top-0 before:w-full before:h-full before:pointer-events-none'>
+    <div className='w-screen overflow-hidden relative iframevideo_frame  before:absolute before:top-0 before:w-full before:h-full before:pointer-events-none'>
     <iframe width="100%" className='aspect-video' src={`https://www.youtube.com/embed/${trailerId}?&autoplay=1&mute=1`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
     <div className='absolute top-[200px] left-[100px] w-[500px]'>

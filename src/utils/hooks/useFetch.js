@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { API_OPTIONS } from '../constants';
+import { addNowPlayingMovies } from '../store/moviesSlice';
+import { useDispatch } from 'react-redux';
 
 const useFetch = (url) => {
 
     const [moviesList, setMoviesList] = useState(null);
     const [loading, setLoading] = useState(null);
     const [error, setError] = useState(null);
+
+    const dispatch = useDispatch();
     
   useEffect( () =>{
     setLoading(true)
@@ -14,6 +18,7 @@ const useFetch = (url) => {
     const getMoviesData = async () =>{
       const data = await fetch(url, API_OPTIONS)
       const json = await data.json();
+      dispatch(addNowPlayingMovies(json.results))
       setLoading(false);
       setMoviesList(json.results)
 
